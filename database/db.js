@@ -9,7 +9,8 @@ const sequelize =
         DATABASE_NAME,
         DATABASE_USERNAME,
         DATABASE_PASSWORD, {
-        host: 'localhost',
+        host: 'db',
+        port: 3306,
         dialect: 'mysql'
     })
 

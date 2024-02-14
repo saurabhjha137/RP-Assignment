@@ -1,0 +1,35 @@
+
+services:
+  app:
+    image: rpassign1:latest
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - internalnet
+    
+
+  db:
+    image: mysql:8.0.36
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: Saurabh123
+      MYSQL_DATABASE: todo-task-db
+      MYSQL_PASSWORD: Saurabh123
+      SERVICE_NAME: db
+    ports:
+      - 3306:3306
+
+    expose:
+      - 3306
+    networks:
+      - internalnet
+
+networks:
+  internalnet:
+    driver: bridge

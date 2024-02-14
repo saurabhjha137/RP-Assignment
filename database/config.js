@@ -1,6 +1,6 @@
 const DATABASE_NAME = 'todo-task-db'
 const DATABASE_USERNAME = 'root'
-const DATABASE_PASSWORD = 'Saurabh@123'
+const DATABASE_PASSWORD = 'Saurabh123'
 
 module.exports = {
     DATABASE_NAME,

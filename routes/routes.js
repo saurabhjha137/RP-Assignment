@@ -4,6 +4,12 @@ const {Task} = require('../models/todoTaskModel.js');
 const { sequelize } = require("../database/db.js");
 
 
+router.get('/', async(req, res)=>{
+
+    res.send("Hello World")
+});
+
+
 //Endpoint to getAll tasks
 router.get('/todoTasks', async(request,response)=>{
 
@@ -102,8 +108,6 @@ router.put('/updateTodoTask/:taskID', async (request, response) => {
       response.status(500).json({ message: 'Failed to update task.' });
   }
 });
-
-
 
 
 //Endpoint to Delete task
