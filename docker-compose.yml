@@ -1,32 +1,42 @@
-
 services:
-  app:
-    image: rpassign1:latest
-    build: .
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-    networks:
-      - internalnet
-    
 
-  db:
+  rpdb:
     image: mysql:8.0.36
     restart: unless-stopped
     command: --default-authentication-plugin=mysql_native_password
-    
+    volumes:
+      - /dbinit/init.sql:/docker-entrypoint-initdb.d/0_init.sql
+      - $HOME/database:/var/lib/mysql
+        
     environment:
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: Saurabh123
       MYSQL_DATABASE: todo-task-db
       MYSQL_PASSWORD: Saurabh123
-      SERVICE_NAME: db
+      SERVICE_NAME: rpdb
     ports:
-      - 3306:3306
-
+      - "3306:3306"
     expose:
       - 3306
+    networks:
+      - internalnet
+
+
+  rpapp:
+    image: rpassign3:latest
+    build: .
+    environment:
+      DB_HOST: rpdb
+      DB_USER: 'root'
+      DB_PASSWORD: 'Saurabh123'
+      DB_NAME: 'todo-task-db'
+      DB_PORT: 3306
+      DB_CONNECTION_LIMIT: 10
+      SERVER_PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rpdb
     networks:
       - internalnet
 
