@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router()
 const {Task} = require('../models/todoTaskModel.js');
-const { sequelize } = require("../database/db.js");
+const { sequelize } = require("../database/config.js");
 
 
 router.get('/', async(req, res)=>{

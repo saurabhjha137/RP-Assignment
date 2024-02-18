@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const { sequelize } = require("../database/db.js");
+const { sequelize } = require("../database/config.js");
 
 
 // Define the student model that creates a table in the `Todo task DB`

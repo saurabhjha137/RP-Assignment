@@ -2,7 +2,7 @@ const express = require("express");
 const apiRoutes = require('./routes/routes.js');
 const app = express();
 const port = 3000;
-const { sequelize } = require("./database/db.js");
+const { sequelize } = require("./database/config.js");
 
 
 
